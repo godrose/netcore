@@ -1,13 +1,12 @@
 ﻿using System;
 using Autofac;
 using Autofac.Extensions.DependencyInjection;
+using LogoFX.Bootstrapping;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using netcore.Domain;
-using netcore.Infra;
 
 namespace netcore
 {
@@ -40,7 +39,11 @@ namespace netcore
             // to dispose of the container at the end of the app,
             // be sure to keep a reference to it as a property or field.            
             builder.Populate(services);
-            builder.RegisterType<TodoRepository>().As<ITodoRepository>();
+            var containerAdapter = new AutofacAdapter(builder);
+            var bootstrapper =
+                new Bootstrapper(containerAdapter)
+                .Use(new RegisterCompositionModulesMiddleware<Bootstrapper>());
+            bootstrapper.Initialize();            
             ApplicationContainer = builder.Build();
             // Add our repository type
             

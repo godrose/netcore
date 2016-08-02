@@ -17,7 +17,10 @@
     "netcore.Domain": "1.0.0-*",
     "netcore.Infra": "1.0.0-*",
     "Solid.Practices.IoC": "1.1.1",
-    "Autofac.Extensions.DependencyInjection": "4.0.0-rc3-309"
+    "Autofac.Extensions.DependencyInjection": "4.0.0-rc3-309",    
+    "Solid.Bootstrapping": "1.1.1",
+    "Solid.Extensibility": "1.1.0",
+    "LogoFX.Bootstrapping": "1.6.0"
   },
 
   "tools": {
